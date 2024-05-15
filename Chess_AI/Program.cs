@@ -224,67 +224,6 @@ namespace MyChess
             return possibleMoves;
         }
 
-
-
-
-
-        private static int[][] DeepCopy(int[][] position)
-        {
-            int[][] copy = new int[8][];
-            for (int i = 0; i < 8; i++)
-            {
-                copy[i] = new int[8];
-                Array.Copy(position[i], copy[i], 8);
-            }
-            return copy;
-        }
-
-
-
-        private static int GetRank(string move)
-        {
-            return int.Parse(move[1].ToString());
-        }
-
-        private static List<string> GetAllPossibleMoves(int[][] position)
-        {
-            List<string> allMoves = new List<string>(); 
-
-            for (int row = 0; row < 8; row++)
-            {
-                for (int column = 0; column < 8; column++)
-                {
-                    if (position[row][column] != Empty)
-                    {
-                        var possibleMoves = GetPossibleMoves(position, row, column);
-                        allMoves.AddRange(possibleMoves);
-                    }
-                }
-            }
-
-            return allMoves;
-        }
-
-        private static bool IsValidMoveFormat(string move)
-        {
-            if (move.Length != 4)
-            {
-                return false;
-            }
-
-            if (!char.IsLetter(move[0]) || !char.IsLetter(move[2]))
-            {
-                return false;
-            }
-
-            if (!char.IsDigit(move[1]) || !char.IsDigit(move[3]))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         private static bool IsValidPosition(int row, int column)
         {
             return row >= 0 && row < 8 && column >= 0 && column < 8;
@@ -299,10 +238,10 @@ namespace MyChess
             int fromPiece = position[fromRow][fromColumn];
             int toPiece = position[toRow][toColumn];
 
-            string getFromPieceType = GetPieceType(fromPiece);
+
             string getFromPieceColor = GetPieceColor(fromPiece);
 
-            string getToPieceType = GetPieceType(toPiece);
+
             string getToPieceColor = GetPieceColor(toPiece);
 
             if (getFromPieceColor == getToPieceColor)
